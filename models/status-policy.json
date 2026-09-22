@@ -1,0 +1,889 @@
+{
+  "format": "dicevision-temporal-pip-status-policy-v1",
+  "created_at": "2026-09-02T10:03:29.650884+00:00",
+  "source_metrics": "/home/dash/hub/projects/dicevision/local/training/evaluation/temporal-pip-sequence-v2-mixed-aug20-validation/metrics.json",
+  "calibration_stride": 1,
+  "default_profile": "balanced",
+  "yellow": {
+    "face_confidence_threshold": 0.5,
+    "margin_threshold": 0.1
+  },
+  "profiles": {
+    "strict": {
+      "face_confidence_threshold": 0.78,
+      "margin_threshold": 0.6,
+      "minimum_observations": 1,
+      "minimum_stable_predictions": 1,
+      "maximum_wrong_commits": 0,
+      "calibration_metrics": {
+        "tracks": 187,
+        "green": 187,
+        "correct": 187,
+        "wrong": 0,
+        "not_green": 0,
+        "green_coverage": 1.0,
+        "green_accuracy": 1.0,
+        "median_observations_to_green": 1.0,
+        "mean_observations_to_green": 1.0481283422459893
+      },
+      "validation_by_stride": {
+        "1": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0481283422459893,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 185,
+              "correct": 185,
+              "wrong": 0,
+              "not_green": 2,
+              "green_coverage": 0.9893048128342246,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0162162162162163
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            }
+          }
+        },
+        "2": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        },
+        "4": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        }
+      }
+    },
+    "balanced": {
+      "face_confidence_threshold": 0.78,
+      "margin_threshold": 0.6,
+      "minimum_observations": 1,
+      "minimum_stable_predictions": 1,
+      "maximum_wrong_commits": 1,
+      "calibration_metrics": {
+        "tracks": 187,
+        "green": 187,
+        "correct": 187,
+        "wrong": 0,
+        "not_green": 0,
+        "green_coverage": 1.0,
+        "green_accuracy": 1.0,
+        "median_observations_to_green": 1.0,
+        "mean_observations_to_green": 1.0481283422459893
+      },
+      "validation_by_stride": {
+        "1": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0481283422459893,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 185,
+              "correct": 185,
+              "wrong": 0,
+              "not_green": 2,
+              "green_coverage": 0.9893048128342246,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0162162162162163
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            }
+          }
+        },
+        "2": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        },
+        "4": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        }
+      }
+    },
+    "fast": {
+      "face_confidence_threshold": 0.78,
+      "margin_threshold": 0.6,
+      "minimum_observations": 1,
+      "minimum_stable_predictions": 1,
+      "maximum_wrong_commits": 2,
+      "calibration_metrics": {
+        "tracks": 187,
+        "green": 187,
+        "correct": 187,
+        "wrong": 0,
+        "not_green": 0,
+        "green_coverage": 1.0,
+        "green_accuracy": 1.0,
+        "median_observations_to_green": 1.0,
+        "mean_observations_to_green": 1.0481283422459893
+      },
+      "validation_by_stride": {
+        "1": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0481283422459893,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 185,
+              "correct": 185,
+              "wrong": 0,
+              "not_green": 2,
+              "green_coverage": 0.9893048128342246,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0162162162162163
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0481283422459893
+            }
+          }
+        },
+        "2": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        },
+        "4": {
+          "tracks": 187,
+          "green": 187,
+          "correct": 187,
+          "wrong": 0,
+          "not_green": 0,
+          "green_coverage": 1.0,
+          "green_accuracy": 1.0,
+          "median_observations_to_green": 1.0,
+          "mean_observations_to_green": 1.0374331550802138,
+          "by_views": {
+            "1": {
+              "tracks": 187,
+              "green": 182,
+              "correct": 182,
+              "wrong": 0,
+              "not_green": 5,
+              "green_coverage": 0.9732620320855615,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0
+            },
+            "2": {
+              "tracks": 187,
+              "green": 186,
+              "correct": 186,
+              "wrong": 0,
+              "not_green": 1,
+              "green_coverage": 0.9946524064171123,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.021505376344086
+            },
+            "4": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "8": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "16": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "32": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            },
+            "all": {
+              "tracks": 187,
+              "green": 187,
+              "correct": 187,
+              "wrong": 0,
+              "not_green": 0,
+              "green_coverage": 1.0,
+              "green_accuracy": 1.0,
+              "median_observations_to_green": 1.0,
+              "mean_observations_to_green": 1.0374331550802138
+            }
+          }
+        }
+      }
+    }
+  },
+  "notes": [
+    "GREEN is a calibrated product status, not mathematical certainty.",
+    "Raw network softmax values are not presented as literal probabilities of correctness.",
+    "The learned READY head is diagnostic only for this policy and is not an authoritative GREEN veto.",
+    "Strict/balanced/fast error budgets are counts on this finite validation set, not promised field error rates."
+  ]
+}

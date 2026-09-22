@@ -1,0 +1,138 @@
+{
+  "format": "dicevision-temporal-pip-sequence-config-v1",
+  "source_top_dataset": "local/training/top-approved-v3-mixed-aug20",
+  "derived_dataset": "local/training/temporal-pip-sequence-v2-mixed-aug20",
+  "preparation": {
+    "crop_size": 160,
+    "jpeg_quality": 96,
+    "minimum_observations_per_track": 3,
+    "include_test": false
+  },
+  "model": {
+    "backbone": "mobilenet_v3_small",
+    "pretrained": true,
+    "embedding_dim": 256,
+    "dropout": 0.2
+  },
+  "sampling": {
+    "sequence_lengths": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "samples_per_track_per_epoch": 8,
+    "random_subset_probability": 0.35,
+    "maximum_stride": 4
+  },
+  "augmentation": {
+    "random_rot90": true,
+    "horizontal_flip_probability": 0.5,
+    "vertical_flip_probability": 0.5,
+    "brightness_fraction": 0.15,
+    "contrast_fraction": 0.15
+  },
+  "training": {
+    "epochs": 30,
+    "smoke_epochs": 1,
+    "smoke_max_tracks": 24,
+    "smoke_samples_per_track": 2,
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "readiness_loss_weight": 0.5,
+    "device": 0,
+    "workers": 4,
+    "seed": 0,
+    "amp": true,
+    "project": "local/training/runs",
+    "name": "temporal-pip-sequence-v2-mixed-aug20",
+    "use_uint8_memmap_cache": true,
+    "cache_progress_every_views": 1000,
+    "prefetch_factor": 1,
+    "progress_every_batches": 2,
+    "persistent_workers": false
+  },
+  "evaluation": {
+    "prefix_lengths": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "strides": [
+      1,
+      2,
+      4
+    ],
+    "face_confidence": {
+      "minimum": 0.5,
+      "maximum": 0.99,
+      "step": 0.01
+    },
+    "ready_confidence": {
+      "minimum": 0.5,
+      "maximum": 0.99,
+      "step": 0.01
+    },
+    "margin_thresholds": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2
+    ],
+    "require_zero_wrong_commits": true,
+    "project": "local/training/evaluation",
+    "name": "temporal-pip-sequence-v2-mixed-aug20-validation"
+  },
+  "status_policy": {
+    "calibration_stride": 1,
+    "default_profile": "balanced",
+    "profiles": {
+      "strict": {
+        "maximum_validation_wrong_commits": 0
+      },
+      "balanced": {
+        "maximum_validation_wrong_commits": 1
+      },
+      "fast": {
+        "maximum_validation_wrong_commits": 2
+      }
+    },
+    "face_confidence": {
+      "minimum": 0.5,
+      "maximum": 0.99,
+      "step": 0.01
+    },
+    "margin_thresholds": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "minimum_observations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "minimum_stable_predictions": [
+      1,
+      2,
+      3
+    ],
+    "yellow_face_confidence_threshold": 0.5,
+    "yellow_margin_threshold": 0.1,
+    "output": "local/training/runs/temporal-pip-sequence-v2-mixed-aug20/status-policy.json"
+  }
+}

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07130e">
+  
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>DiceSecret - physical dice entropy</title>
+  <meta name="description" content="DiceSecret generates verifiable root-secret entropy from physical d6 dice using a camera.">
+  <link rel="canonical" href="https://dicesecret.com/">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <header><span class="mark">DS</span><h1>DiceSecret</h1><span id="status">Ready</span></header>
+    <nav class="infoNav"><a href="/why.html" target="_blank" rel="noopener">Why DiceSecret?</a><a href="/ordering.html" target="_blank" rel="noopener">Ordering technique</a></nav>
+
+    <section id="setup" class="panel active">
+      <div class="metric"><span>Target</span><strong><select id="bits" aria-label="Entropy bits"><option>64</option><option selected>128</option><option>192</option><option>256</option></select> bits</strong></div>
+      <fieldset><legend>Extraction</legend><label><input type="radio" name="mode" value="exact" checked><span><b>Exact uniform</b><small>Produces an exactly uniform result; may occasionally require additional dice.</small></span></label><label><input type="radio" name="mode" value="hash"><span><b>Fixed-roll hash</b><small>Always completes at the minimum accepted roll count.</small></span></label></fieldset>
+      <fieldset><legend>Final secret</legend><label><input type="radio" name="secretMode" value="private" checked><span><b>Private browser mix - On (recommended)</b><small>Your browser generates private random bytes when the session begins. They are XORed with the dice-derived bytes locally and are never sent to the inference server.</small></span></label><label><input type="radio" name="secretMode" value="dice-only"><span><b>Dice-only output</b><small>Use the dice-derived bytes returned by the server directly, with no browser-private random mix.</small></span></label><p class="trustNote">This page supplies the JavaScript, so a malicious or compromised deployment could still expose browser-local values. This hosted site is a demonstration; the strongest intended form is an offline application with local inference. <a href="/why.html" target="_blank" rel="noopener">Why?</a></p></fieldset>
+      <button id="start" class="primary">Begin</button>
+      <details class="recoveryTool">
+        <summary>Recover an existing representation</summary>
+        <p>Decode locally in this browser. The entered phrase/value is not sent to the server.</p>
+        <label for="recoveryEncoding">Encoding</label>
+        <select id="recoveryEncoding"></select>
+        <label for="recoveryBits">Target bits</label>
+        <select id="recoveryBits"><option>64</option><option selected>128</option><option>160</option><option>192</option><option>224</option><option>256</option></select>
+        <label for="recoveryInput">Phrase or encoded value</label>
+        <textarea id="recoveryInput" rows="5" spellcheck="false" autocomplete="off"></textarea>
+        <button id="decodeRecovery" type="button" class="quiet">Decode locally</button>
+        <div id="recoveryResult" class="recoveryResult hidden">
+          <b id="recoverySummary"></b>
+          <label>Hex</label><code id="recoveryHex"></code>
+          <label>Bits</label><code id="recoveryBinary" class="binary"></code>
+        </div>
+      </details>
+      <details class="recoveryTool recoveryKitImport" open>
+        <summary>Recover from a kit or QR</summary>
+        <p>Everything here runs locally in this browser. QR camera frames, QR images, passphrases, encrypted envelopes, and recovered secrets are not sent to the server.</p>
+        <div class="qrImportActions">
+          <button id="startRecoveryQrScan" type="button" class="primary">Scan QR with camera</button>
+          <button id="chooseRecoveryQrImage" type="button" class="quiet">Open QR image</button>
+        </div>
+        <input id="recoveryQrImage" class="hidden" type="file" accept="image/*">
+        <div id="recoveryQrScanner" class="recoveryQrScanner hidden">
+          <video id="recoveryQrVideo" playsinline muted autoplay></video>
+          <small id="recoveryQrScanStatus">Scanning locally...</small>
+          <button id="stopRecoveryQrScan" type="button" class="quiet">Stop camera</button>
+        </div>
+        <small id="qrDecodeSupport">QR decoding stays local in this browser. Native QR detection is preferred when available, with bundled jsQR as the fallback.</small>
+        <label for="recoveryKitFile">Or open a recovery-kit file</label>
+        <input id="recoveryKitFile" type="file" accept=".json,application/json,text/plain">
+        <label for="recoveryKitInput">Or paste recovery-kit JSON / QR payload text</label>
+        <textarea id="recoveryKitInput" rows="6" spellcheck="false" autocomplete="off" placeholder="Paste recovery-kit JSON, RE1|... or RE1E|..."></textarea>
+        <label for="importRecoveryPassphrase">Passphrase <small>(encrypted kits / encrypted QR only)</small></label>
+        <input id="importRecoveryPassphrase" type="password" autocomplete="off" spellcheck="false" placeholder="Required for encrypted recovery">
+        <button id="importRecoveryKit" type="button" class="quiet">Recover / import locally</button>
+        <div id="importedRecovery" class="recoveryResult hidden">
+          <b id="importedRecoverySummary"></b>
+          <label>Final hex</label><code id="importedRecoveryHex"></code>
+          <div id="importedRecoveryRepresentations" class="representationOutputs"></div>
+        </div>
+      </details>
+    </section>
+
+    <section id="roll" class="panel rollPrompt">
+      <h2>Roll your dice</h2>
+      <p>The camera is not being processed yet. Let the dice settle before starting detection.</p>
+      <div class="rollInstructions">
+        <b>For the best read:</b>
+        <ul>
+          <li>Place all dice flat on a stable, flat surface with no dice stacked on another.</li>
+          <li><b>A top-down view is strongly preferred.</b> Hold the camera roughly 1 to 2 feet directly above the dice and frame the entire group so every die top is visible.</li>
+          <li>Keep the dice large enough in the image for their top faces and pips to be clear.</li>
+          <li>Once detection starts, hold the camera steady. If needed, slowly move or tilt the camera slightly to give the reader a clearer view of difficult dice, then return toward a top-down view.</li>
+          <li>A green die means the reader is relatively confident in that die. Some dice, lighting, and viewing angles may read more easily than others.</li>
+        </ul>
+      </div>
+      <p class="rollReady"><b>When the dice are settled and fully in view, click Detect dice.</b></p>
+      <button id="detect" class="primary">Detect dice</button>
+    </section>
+
+    <section id="capture" class="panel">
+      <div class="camera"><video id="video" playsinline muted autoplay></video><canvas id="overlay"></canvas><div class="recording"><i></i> Detecting live</div></div>
+      <canvas id="captureFrame" class="hidden"></canvas>
+      <div class="liveCount"><strong id="readyCount">0 ready</strong><span id="visibleCount">0 visible</span></div>
+      <small id="liveTiming" class="liveTiming"></small>
+      <p id="scanHelp" class="scanHelp" role="status" aria-live="polite"><b id="scanHelpTitle">Scanning for dice...</b><span id="scanHelpText">Keep the camera steady and near a top-down view. Dice will turn green as the reader becomes confident.</span></p>
+      <button id="acceptLive" class="primary" disabled>Accept 0 dice</button>
+    </section>
+
+    <section id="processing" class="panel center">
+      <div class="spinner" aria-hidden="true"></div><h2>Reading dice...</h2><p>Video and model inference stay in this browser.</p>
+    </section>
+
+    <section id="report" class="panel">
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="progressCopy"><strong id="bitProgress">0 bits</strong><span id="rollProgress">0 accepted dice</span></div>
+      <div class="reportVisual"><img id="reportImage" alt="Accepted dice numbered in entropy order"><canvas id="reportOverlay"></canvas><button id="zoomReport" type="button">Zoom image</button></div>
+      <img id="rawReportImage" class="hidden" alt="">
+      <div id="selectedInspection" class="selectedInspection hidden"><canvas id="selectedCrop"></canvas><div><b id="selectedCropTitle"></b><span>Raw camera crop - no label drawn over the pips.</span><button id="selectedDieAction" type="button" class="danger hidden">Reject selected die</button></div></div>
+      <div id="summary" class="summary"></div>
+      <div class="orderGuide"><b>Entropy order</b><span id="selectedDie">Tap a value to locate that die.</span></div>
+      <div id="values" class="values"></div><div id="rejectedDice" class="rejectedDice hidden"></div>
+      <details class="orderMethod"><summary>How is this order made?</summary><p>The detected d6 tops estimate a top-down floor layout using only their shared cube geometry. The most isolated die becomes position 1; the farthest die defines direction, and an off-axis die fixes which side is up. The other dice are visited by repeatedly splitting the layout into four median quadrants. It is not a nearest-neighbor path, so a jump means one region ended and the next began.</p><div class="orderLinks"><button id="toggleOrderPath" type="button" class="quiet">Show order path</button><button id="toggleOrderNumbers" type="button" class="quiet">Show positions</button><a href="/ordering.html" target="_blank" rel="noopener">Technique</a></div></details>
+      <details id="readingDetails"><summary>Reading details</summary><div id="detailRows"></div></details>
+      <div id="orderWarning" class="warning hidden"><b id="orderReviewTitle">Review this roll</b><span id="orderExplanation">Tap any numbered value to highlight its die.</span><div><button id="acceptOrder">Accept roll</button><button id="retakeOrder" class="quiet">Retake</button></div></div>
+      <div id="complete" class="complete hidden">
+        <span id="completeTitle">Complete</span>
+        <div id="finishedOutput">
+          <p id="secretSourceStatus" class="secretSourceStatus"></p>
+          <details id="verificationDetails" class="verificationDetails">
+            <summary>Verification details</summary>
+            <p>The server-visible dice result and browser-local final result are shown separately so the mix can be audited. The representations below are generated from the final output, not from the dice-derived value.</p>
+            <div class="verificationValue"><b>Dice-derived output <small>(server-visible)</small></b><code id="diceDerivedHex"></code></div>
+            <div class="verificationValue"><b>Final output <small>(browser-local)</small></b><code id="finalOutputHex"></code></div>
+            <div id="browserMixRow" class="verificationValue hidden">
+              <div class="verificationHeading"><b>Browser-private XOR bytes</b><button id="toggleBrowserMix" type="button" class="quiet">Reveal</button></div>
+              <code id="browserMixHex" class="hidden"></code>
+              <small>Revealing these bytes is local to this page. They can also be reconstructed from the two values above because final = dice-derived XOR browser-private.</small>
+            </div>
+            <p id="mixVerificationStatus" class="mixVerificationStatus"></p>
+          </details>
+          <p class="localOnly">Representations below are generated locally in this browser from the final entropy bytes.</p>
+          <details class="representationPicker" open><summary>Representations</summary><div id="representationChoices" class="representationChoices"></div></details>
+          <div id="representationOutputs" class="representationOutputs"></div>
+          <section id="recoveryExport" class="recoveryExport hidden">
+            <h3>Recovery &amp; backup</h3>
+            <p>The final secret and all recovery materials below are generated locally in this browser. Choose the artifact that matches how you intend to store it.</p>
+            <section class="recoveryMetadataEditor">
+              <h4>Recovery metadata <small>(browser-local)</small></h4>
+              <label for="recoveryLabel">Name / label</label>
+              <input id="recoveryLabel" type="text" maxlength="160" autocomplete="off" placeholder="e.g. Cold wallet seed A">
+              <label for="recoveryNote">Note</label>
+              <textarea id="recoveryNote" rows="3" maxlength="4000" autocomplete="off" placeholder="Optional context to include with recovery materials"></textarea>
+              <div class="recoveryMetadataFacts"><span><b>Derived</b><small id="recoveryDerivedAt"> - </small></span><span><b>Document ID</b><code id="recoveryDocumentId"> - </code></span></div>
+              <small>Name and note remain in browser memory and are not sent to the inference server. They are included only in recovery materials you explicitly print, download, or copy.</small>
+            </section>
+            <section class="printSheetChoices">
+              <h4>Printable sheets</h4>
+              <p><b>Blank record sheet:</b> prints metadata and empty writing areas only. It contains no secret and no recovery QR; write the selected Hex/word representation onto the physical sheet after printing.</p>
+              <div class="recoveryActions">
+                <button id="printRecordSheet" type="button" class="primary">Print blank record sheet - no secret</button>
+                <button id="downloadRecordSheet" type="button" class="quiet">Download blank record sheet (.html)</button>
+                <button id="printRecoverySheet" type="button" class="quiet">Print full recovery sheet - contains secret</button>
+                <button id="downloadRecoverySheet" type="button" class="quiet">Download full recovery sheet (.html)</button>
+              </div>
+            </section>
+            <fieldset class="recoveryProtection"><legend>Recovery files &amp; QR</legend>
+              <label><input type="radio" name="recoveryProtection" value="plain" checked><span><b>Plain</b><small>JSON and QR directly contain the final secret.</small></span></label>
+              <label><input type="radio" name="recoveryProtection" value="encrypted"><span><b>Encrypted</b><small>Protect the machine-recovery copy with a passphrase.</small></span></label>
+            </fieldset>
+            <div id="plainRecoveryExport">
+              <div class="recoveryActions">
+                <button id="downloadRecoveryKit" type="button" class="quiet">Download recovery kit (.json)</button>
+                <button id="copyRecoveryKit" type="button" class="quiet">Copy kit JSON</button>
+                <button id="downloadRecoveryQr" type="button" class="quiet">Download QR (.svg)</button>
+                <button id="copyQrPayload" type="button" class="quiet">Copy QR payload text</button>
+              </div>
+              <div id="recoveryQr" class="recoveryQr" aria-label="Recovery QR code"></div>
+              <p class="qrWarning">This QR contains the final secret. Scanning or photographing it with a cloud-connected application may expose the secret. The QR is generated entirely in this browser.</p>
+              <details class="qrPayloadDetails"><summary>QR payload text</summary><code id="qrPayloadText"></code></details>
+            </div>
+            <div id="encryptedRecoveryControls" class="encryptedRecoveryControls hidden">
+              <label for="encryptedRecoveryPassphrase">Passphrase</label>
+              <input id="encryptedRecoveryPassphrase" type="password" autocomplete="off" spellcheck="false">
+              <label for="encryptedRecoveryPassphraseConfirm">Confirm passphrase</label>
+              <input id="encryptedRecoveryPassphraseConfirm" type="password" autocomplete="off" spellcheck="false">
+              <small>Encryption uses browser-native PBKDF2-HMAC-SHA-256 (600,000 iterations) and AES-256-GCM. Short PINs are vulnerable to offline guessing.</small>
+              <button id="createEncryptedRecovery" type="button" class="primary">Create encrypted kit &amp; QR</button>
+            </div>
+            <div id="encryptedRecoveryExport" class="hidden">
+              <div class="recoveryActions">
+                <button id="printEncryptedRecoverySheet" type="button" class="primary">Print encrypted recovery sheet</button>
+                <button id="downloadEncryptedRecoverySheet" type="button" class="quiet">Download encrypted sheet (.html)</button>
+                <button id="downloadEncryptedRecoveryKit" type="button" class="quiet">Download encrypted kit (.json)</button>
+                <button id="copyEncryptedRecoveryKit" type="button" class="quiet">Copy encrypted kit JSON</button>
+                <button id="downloadEncryptedRecoveryQr" type="button" class="quiet">Download encrypted QR (.svg)</button>
+                <button id="copyEncryptedQrPayload" type="button" class="quiet">Copy encrypted QR payload</button>
+              </div>
+              <div id="encryptedRecoveryQr" class="recoveryQr" aria-label="Encrypted recovery QR code"></div>
+              <p class="qrWarning">This QR contains only encrypted recovery data. Anyone who obtains it can still attempt offline passphrase guesses.</p>
+              <details class="qrPayloadDetails"><summary>Canonical encrypted QR payload text</summary><code id="encryptedQrPayloadText"></code></details>
+            </div>
+          </section>
+        </div>
+        <p id="incompleteOutput"></p>
+        <button id="startAnother" type="button" class="primary startAnother">Start another session</button>
+      </div>
+      <div id="nextActions" class="nextActions"><button id="endSession" class="quiet">End session</button><button id="rollMore" class="primary">Roll more</button></div>
+    </section>
+
+    <div id="error" class="error hidden" role="alert"></div>
+    <footer>DiceSecret browser-local demonstration: camera frames, dice recognition, tracking, and value inference stay in this browser. This page still supplies the JavaScript and model files, so verify the published build when using it for high-value secrets. <a href="/why.html" target="_blank" rel="noopener">Why DiceSecret?</a> <a href="/verify.html" target="_blank" rel="noopener">Verify build</a> <span id="buildIdentity">source / unverified build</span>. Do not use hosted-demo output for production secrets.</footer>
+  </main>
+  <div id="imageZoom" class="imageZoom hidden" role="dialog" aria-modal="true" aria-label="Zoomed dice report"><div class="zoomToolbar"><button id="closeZoom" type="button">Close</button><button id="zoomOut" type="button">-</button><button id="zoomReset" type="button">Reset</button><button id="zoomIn" type="button">+</button><button id="zoomTogglePath" type="button">Path</button><button id="zoomToggleNumbers" type="button">Positions</button><button id="zoomDieAction" type="button" class="danger hidden">Reject die</button><strong id="zoomSelection">No die selected</strong></div><div id="zoomViewport"><div id="zoomStage"><img id="zoomImage" alt="Zoomed dice report"><canvas id="zoomOverlay"></canvas></div></div></div>
+  <script src="/entropy-codec.js"></script>
+  <script src="/entropy-secret.js"></script>
+  <script src="/jsqr-1.4.0.js"></script>
+  <script src="/entropy-qr.js"></script>
+  <script src="/entropy-recovery.js"></script>
+  <script src="/entropy-encryption.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07130e">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>DiceSecret ordering technique</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="canonical" href="https://dicesecret.com/ordering.html">
+</head>
+<body>
+  <main class="technique">
+    <header><span class="mark">DS</span><h1>Ordering technique</h1><a href="/">Back</a></header>
+    <section>
+      <h2>Why order the dice?</h2>
+      <p>Entropy needs one reproducible sequence. Camera "top-left" is unreliable because the view can rotate, move, or zoom.</p>
+    </section>
+    <section>
+      <h2>1. Establish a frame</h2>
+      <p>The most isolated accepted die is position 1. The farthest die from it defines the horizontal direction; it does not automatically become position 2. A strong off-axis die fixes which side is up.</p>
+    </section>
+    <section>
+      <h2>2. Traverse the grid</h2>
+      <p>The detected d6 top boxes first estimate a top-down floor layout from their shared cube geometry. No marker, known surface, previous capture, or camera calibration is used. The normalized layout is repeatedly split at its median x and y coordinates and the four resulting regions are visited in a fixed order. Nearby dice tend to stay near each other, but jumps occur where one region ends and another begins.</p>
+      <svg viewBox="0 0 240 240" role="img" aria-label="The first sixteen positions of a recursive quadrant traversal">
+        <rect x="2" y="2" width="236" height="236" rx="8" fill="#07130e" stroke="#356246" stroke-width="3"/>
+        <path d="M30 30 L90 30 L30 90 L90 90 L150 30 L210 30 L150 90 L210 90 L30 150 L90 150 L30 210 L90 210 L150 150 L210 150 L150 210 L210 210" fill="none" stroke="#52d9ff" stroke-width="4" stroke-linejoin="round"/>
+        <g fill="#54e887" stroke="#07130e" stroke-width="2">
+          <circle cx="30" cy="30" r="15"/><circle cx="90" cy="30" r="15"/><circle cx="30" cy="90" r="15"/><circle cx="90" cy="90" r="15"/>
+          <circle cx="150" cy="30" r="15"/><circle cx="210" cy="30" r="15"/><circle cx="150" cy="90" r="15"/><circle cx="210" cy="90" r="15"/>
+          <circle cx="30" cy="150" r="15"/><circle cx="90" cy="150" r="15"/><circle cx="30" cy="210" r="15"/><circle cx="90" cy="210" r="15"/>
+          <circle cx="150" cy="150" r="15"/><circle cx="210" cy="150" r="15"/><circle cx="150" cy="210" r="15"/><circle cx="210" cy="210" r="15"/>
+        </g>
+        <g fill="#041108" font-family="system-ui" font-size="11" font-weight="800" text-anchor="middle" dominant-baseline="central">
+          <text x="30" y="30">1</text><text x="90" y="30">2</text><text x="30" y="90">3</text><text x="90" y="90">4</text>
+          <text x="150" y="30">5</text><text x="210" y="30">6</text><text x="150" y="90">7</text><text x="210" y="90">8</text>
+          <text x="30" y="150">9</text><text x="90" y="150">10</text><text x="30" y="210">11</text><text x="90" y="210">12</text>
+          <text x="150" y="150">13</text><text x="210" y="150">14</text><text x="150" y="210">15</text><text x="210" y="210">16</text>
+        </g>
+      </svg>
+    </section>
+    <section>
+      <h2>What DiceSecret guarantees</h2>
+      <p>Only accepted d6 values participate. Face values never choose the order. Perspective correction is a best estimate from the current dice alone. If that fit, the anchor, the direction, or a recursive split is too ambiguous, the app asks the user to confirm or retake.</p>
+      <p>Background: <a href="https://en.wikipedia.org/wiki/Quadtree" target="_blank" rel="noopener">recursive quadrant partitioning</a> | <a href="https://en.wikipedia.org/wiki/Projective_geometry" target="_blank" rel="noopener">projective geometry</a></p>
+    </section>
+  </main>
+</body>
+</html>

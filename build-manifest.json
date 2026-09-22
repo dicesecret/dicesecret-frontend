@@ -1,0 +1,195 @@
+{
+  "$schema": "https://dicesecret.com/schema/dicesecret-frontend-build-manifest-v1.schema.json",
+  "assets": {
+    "app.js": {
+      "bytes": 70254,
+      "sha256": "6d245e1b60a518c5f2e6c2ce48559c59db961c6d59eb24fdb22574271bbd4598"
+    },
+    "entropy-codec.js": {
+      "bytes": 22182,
+      "sha256": "f1319124abd1c79dd9097f1bbacc1829f9888551b28caa3879f6d6ab42c0bac7"
+    },
+    "entropy-encryption.js": {
+      "bytes": 26013,
+      "sha256": "6fefaa6b1d842f3612513d53ff51283e066726f90642ad3829112eccef4d6d23"
+    },
+    "entropy-qr.js": {
+      "bytes": 10157,
+      "sha256": "c7a60a457964472ca6433adc6301263e392161f8eb8d443d54b823e2993c9c00"
+    },
+    "entropy-recovery.js": {
+      "bytes": 25081,
+      "sha256": "c198b2cae8d82f41390c32b22ba71a979f10e3db68ee99bae709f53a30aa2148"
+    },
+    "entropy-secret.js": {
+      "bytes": 3909,
+      "sha256": "eda9a1f208f772623e7253f4337224b60d737637281b8efd4b0845f15390bad3"
+    },
+    "favicon.svg": {
+      "bytes": 475,
+      "sha256": "deff154d8c128b6709a8d9c5981b342bcd0e206795cb4c1a4a7c31510656cd9f"
+    },
+    "index.html": {
+      "bytes": 19606,
+      "sha256": "34bc2228409150f0f641d0f916806d2c59ec92eee6c03eb72d2b110bea95b925"
+    },
+    "jsqr-1.4.0.LICENSE.txt": {
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    "jsqr-1.4.0.js": {
+      "bytes": 256885,
+      "sha256": "bc40c8a15196236b2314db0856f72ca0b49980cd5413b8c852a7349f5fee0859"
+    },
+    "models/model-manifest.json": {
+      "bytes": 1415,
+      "sha256": "9a4a15a9287d2621e51d9f7bd9c9140b9e2a7c154494aedd54f5c610ad0e63b6"
+    },
+    "models/status-policy.json": {
+      "bytes": 28869,
+      "sha256": "55f32ad648e52fd04d211a3d61907a667400f9639945dc8cdbd6c395b963f1f5"
+    },
+    "models/temporal-config.json": {
+      "bytes": 2897,
+      "sha256": "268927ce048cea6edc603e0933d72058a02a89e2d7b968ef07fd836899a652ab"
+    },
+    "models/temporal-frame-encoder.onnx": {
+      "bytes": 4310905,
+      "sha256": "df0c43a62a5b0d44783cb022813746e8dcd6a804be6b3fc410c98108322ebe9c"
+    },
+    "models/temporal-reducer.onnx": {
+      "bytes": 932331,
+      "sha256": "12c92c9c2e816499274a6cd98f8fca493ae9b7f0a114bebd6741a986e64ad679"
+    },
+    "models/top-config.json": {
+      "bytes": 732,
+      "sha256": "c02e2c00c95169228711f394b10acabf38d6024a69340dcdda31ed97d17f1c42"
+    },
+    "models/top-obb.onnx": {
+      "bytes": 10195453,
+      "sha256": "31e67d4eb8454bc91d25b48abc2cc1cb5ed32f4ee9da9f4e58ccd1f5ed5a189d"
+    },
+    "models/tracking-config.json": {
+      "bytes": 3033,
+      "sha256": "9069f5699caf33db60b98f432d24f6f4ce93e7d472b290993a1dccae3e367773"
+    },
+    "ordering.html": {
+      "bytes": 3900,
+      "sha256": "af785227955eeeae933fb417e8ee153c93567d6fb5c921eae59726c9f73eeb88"
+    },
+    "schema/dicesecret-frontend-build-manifest-v1.schema.json": {
+      "bytes": 1507,
+      "sha256": "d2e2d169afbba3ee125f9cce332cd23574dfb0b9f31f73539c7917812e2306be"
+    },
+    "styles.css": {
+      "bytes": 19967,
+      "sha256": "4a4510cd1bf080a0baa44aa814db80878d5fb43a927079a7884b0e9e0ac7e640"
+    },
+    "vendor/onnxruntime/ort-wasm-simd-threaded.wasm": {
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    "vendor/onnxruntime/ort.wasm.bundle.min.mjs": {
+      "bytes": 73054,
+      "sha256": "11e64bd8ffe11bd1a2a2f0d6275fdfbbba7262f0b76b99b53d228a8a22ef3d90"
+    },
+    "vendor/opencv/opencv.js": {
+      "bytes": 13298869,
+      "sha256": "b873c8211421da7b9bf41ae157a923f05a46a0b8d3e5904c44c6f3ad6d39a1bd"
+    },
+    "verify-build.js": {
+      "bytes": 2423,
+      "sha256": "07ac70f4c358fd54e9dd01c4ae4cb14b8d0766bd3afae1e7d52628fb0d12ce29"
+    },
+    "verify.html": {
+      "bytes": 1297,
+      "sha256": "d7632beed4e53d75a3e85679d276bbf882673d988533e35b560db91015685552"
+    },
+    "vision-src/entropy-ordering.js": {
+      "bytes": 28363,
+      "sha256": "e807ae3e1a6ac63373a9a65281e5307b93399a95e62e8d0b0142f7dc5310c3da"
+    },
+    "vision-src/local-entropy.js": {
+      "bytes": 3987,
+      "sha256": "dbdb0a78bf8b18827858f63a2c0c71b8e79e6471eb8cfe5942f6993e06116778"
+    },
+    "vision-src/opencv-runtime.js": {
+      "bytes": 1104,
+      "sha256": "eb373e7274ecbd306dddadea58f8654e0446c5ce4578488e45c42bac2ce666cf"
+    },
+    "vision-src/vision-live.js": {
+      "bytes": 12110,
+      "sha256": "8b97701c3c2ef5b4ab72cb904e8aff2835f4da2c6ae49f89de5accec5776c7bf"
+    },
+    "vision-src/vision-motion.js": {
+      "bytes": 5511,
+      "sha256": "b8ba33a2d0a07118450cd8c210321814d1e95a95739ee577e94792ee404100a4"
+    },
+    "vision-src/vision-temporal.js": {
+      "bytes": 13722,
+      "sha256": "5a486d4a49931d196e7f6d1d37dd308effecbaede1155792c58369d70e2af454"
+    },
+    "vision-src/vision-top.js": {
+      "bytes": 4420,
+      "sha256": "f8ab5fa501f7c5f2e3bf88a466057ecb56241d30effc688d7d26ebacb6e1e98b"
+    },
+    "vision-src/vision-tracker.js": {
+      "bytes": 46661,
+      "sha256": "9f5d3710a9ec92584aa1df4c49765c6e17a5cc22be2a49da6640cb94a7aa9ff7"
+    },
+    "why.html": {
+      "bytes": 17193,
+      "sha256": "b44292483965c0cb7aea252b17d18861d01aa036d12684bf00a9e21f9bd78101"
+    },
+    "wordlists/bip39_english.txt": {
+      "bytes": 13116,
+      "sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda"
+    },
+    "wordlists/bytewords.txt": {
+      "bytes": 1280,
+      "sha256": "59a1ed91db2432f6a50fa5cd013d8c634cfca77fa9367ebf5791279690f48a3e"
+    },
+    "wordlists/eff_large_wordlist.txt": {
+      "bytes": 108800,
+      "sha256": "addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e"
+    },
+    "wordlists/eff_short_wordlist_1.txt": {
+      "bytes": 13660,
+      "sha256": "8f5ca830b8bffb6fe39c9736c024a00a6a6411adb3f83a9be8bfeeb6e067ae69"
+    },
+    "wordlists/eff_short_wordlist_2_0.txt": {
+      "bytes": 17258,
+      "sha256": "22b45c52e0bd0bbf03aa522240b111eb4c7c0c1d86c4e518e1be2a7eb2a625e4"
+    },
+    "wordlists/orchard-street-alpha-dice.txt": {
+      "bytes": 13121,
+      "sha256": "5a79c5aa802a62918c9d5c33e36f34e7f289d41a4b47d58ae986868c9d319084"
+    },
+    "wordlists/orchard-street-diceware.txt": {
+      "bytes": 109281,
+      "sha256": "27ee55e6c4e1cdf6e85a1db2ac018786fa1f8be4415e7983976ac16f4f1c5c81"
+    },
+    "wordlists/orchard-street-medium.txt": {
+      "bytes": 66099,
+      "sha256": "c50d42781d5ac20eeed37f271df5a0fd3573de493812f319cd71dd4da9a8a38e"
+    },
+    "wordlists/orchard-street-qwerty.txt": {
+      "bytes": 6787,
+      "sha256": "dbcbb2c74ce70426ab6c532c0167474fd701f1b7a6a56614950eb8475589ccea"
+    },
+    "wordlists/pgp-even.txt": {
+      "bytes": 2024,
+      "sha256": "37a65f88512467edd12a1ab3eeb5f4328230e86711a8efde6333361ce10f4fcf"
+    },
+    "wordlists/pgp-odd.txt": {
+      "bytes": 2407,
+      "sha256": "c2f23c2233d4d7291107e8f796c374d0cb1fb30c1391bcb4f6480243de8ebf5a"
+    },
+    "wordlists/rfc1751-wordlist.txt": {
+      "bytes": 9614,
+      "sha256": "57f52671ada3c689d145e18c74a64f296ea6cac2b98331e3860448ec02c89f11"
+    }
+  },
+  "format": "dicesecret-frontend-build-manifest-v1",
+  "source_commit": "ba487656be5b1c7ccc778475fff13ff459b66ace"
+}

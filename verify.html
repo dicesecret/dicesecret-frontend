@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07130e">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Verify DiceSecret build</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="canonical" href="https://dicesecret.com/verify.html">
+</head>
+<body>
+  <main class="backgroundPage">
+    <header><span class="mark">DS</span><h1>Verify this build</h1><a href="/">Back to demo</a></header>
+    <section>
+      <p>This page verifies the exported browser application's build manifest and every manifested frontend asset using SHA-256 in this browser.</p>
+      <p id="verifyBuildStatus">Checking build manifest...</p>
+      <dl id="verifyBuildMeta"></dl>
+      <pre id="verifyBuildResults"></pre>
+      <p><b>Important:</b> this verifies that the files served by this origin agree with the manifest served by the same origin. The stronger release-verification step is to compare the manifest hash and source commit against the independently published signed release/attestation.</p>
+    </section>
+    <footer class="backgroundFooter">DiceSecret build verification</footer>
+  </main>
+  <script src="/verify-build.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07130e">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Why DiceSecret?</title>
+  <meta name="description" content="Why DiceSecret uses observable physical dice entropy for rare, high-value root secrets, and what that does and does not protect against.">
+  <link rel="canonical" href="https://dicesecret.com/why.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="backgroundPage">
+    <header><span class="mark">DS</span><h1>Why DiceSecret?</h1><a href="/">Back to demo</a></header>
+
+    <section class="backgroundHero">
+      <p class="backgroundLead"><b>DiceSecret provides a user-controlled, physically generated, independently verifiable source of cryptographic entropy for creating high-value root secrets.</b></p>
+      <p>For rare, high-value root secrets, DiceSecret deliberately moves the entropy source outside the computer. Modern operating-system cryptographic random number generators, including Linux, are strong when correctly initialized and uncompromised. The advantage here is different: the physical entropy exists in an independent failure domain, can be witnessed by the user, and can be transformed by deterministic software that is separately auditable.</p>
+    </section>
+
+    <section>
+      <h2>The problem it addresses</h2>
+      <p>Strong cryptographic algorithms still depend on secret values being generated unpredictably. A mathematically strong cipher, signature scheme, or wallet can fail if its keys come from a weak or predictable randomness source.</p>
+      <p>Standards treat entropy generation as a security problem in its own right. NIST SP 800-90B specifies requirements for entropy sources, SP 800-90C describes complete random-bit generator constructions, and IETF RFC 4086 explains that secret, unguessable numbers are at the heart of cryptographic systems.</p>
+      <div class="backgroundCallout">
+        <b>Two separate questions matter:</b>
+        <ol>
+          <li>Is the cryptographic algorithm strong?</li>
+          <li>Was the secret actually selected unpredictably from the space we think it was?</li>
+        </ol>
+        <p>DiceSecret is aimed at the second question.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why an independent physical source can matter</h2>
+      <p>Normally, when software displays a newly generated secret, the user trusts a large stack: hardware, firmware, operating-system entropy, cryptographic libraries, application code, build infrastructure, and sometimes JavaScript delivered over a network.</p>
+      <p>With physical dice, the user supplies the source observations. The software can then make a smaller claim: it deterministically transformed the physical results that the user witnessed into the requested bits.</p>
+      <div class="principleGrid">
+        <div><b>Independent entropy</b><span>The secret does not depend solely on one machine RNG.</span></div>
+        <div><b>Observable source</b><span>The physical events exist before the software transforms them.</span></div>
+        <div><b>Verifiable calculation</b><span>Open deterministic rules can be reproduced independently.</span></div>
+        <div><b>Human recovery</b><span>The same final bits can be represented as hex or reversible word formats.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>This failure mode has happened in the real world</h2>
+      <div class="historyGrid">
+        <article>
+          <h3>Debian OpenSSL, 2006-2008</h3>
+          <p>A Debian-specific change crippled OpenSSL randomness and made affected cryptographic keys guessable. SSH, TLS, OpenVPN, DNSSEC, and other key material had to be regenerated.</p>
+        </article>
+        <article>
+          <h3>Weak RSA and DSA keys at Internet scale</h3>
+          <p>The 2012 "Mining Your Ps and Qs" study recovered many private keys because devices generated insufficiently random values, including shared RSA prime factors and vulnerable DSA signatures.</p>
+        </article>
+        <article>
+          <h3>Android Bitcoin wallets, 2013</h3>
+          <p>Bitcoin users were warned that defects in Android secure randomness could make wallet private keys vulnerable to theft.</p>
+        </article>
+        <article>
+          <h3>Dual_EC_DRBG</h3>
+          <p>NIST ultimately removed this standardized random-number generator after concerns that its design and unexplained parameters could permit prediction by an entity with secret information.</p>
+        </article>
+      </div>
+      <p>These examples do not mean modern random generators are generally unsafe. They demonstrate why the randomness layer itself is part of the trusted computing base.</p>
+    </section>
+
+    <section>
+      <h2>Why dice, and why 128 to 256 bits?</h2>
+      <p>For ideal fair independent six-sided dice, one roll has log2(6), or about 2.585, bits of raw source information. That makes the physical scale unusually convenient:</p>
+      <div class="entropyMath">
+        <div><b>50 d6 rolls</b><span>about 129.25 raw bits</span></div>
+        <div><b>100 d6 rolls</b><span>about 258.50 raw bits</span></div>
+      </div>
+      <p>Fifty fair d6 outcomes therefore carry slightly more than 128 raw bits. Because 6^50 is not a power of two, an exact unbiased 128-bit extraction cannot use every possible 50-roll sequence. DiceSecret's exact extractor succeeds from exactly 50 d6 results about 84.2% of the time; otherwise it requests additional rolls rather than introduce conversion bias.</p>
+      <p>Those quantities line up naturally with common 128-bit and 256-bit security targets. A purpose-built electronic entropy source is a serious engineering component: standards such as NIST SP 800-90B deal with noise-source behavior, entropy estimation, health testing, and conditioning. Ordinary dice are not a certified hardware RNG, but they provide an inexpensive, observable physical source at exactly the low data rate needed for a root-secret ceremony.</p>
+      <p><b>Important:</b> exact base-6 extraction does not prove that a physical die is perfectly fair. Physical bias is a different property of the entropy source. The stated raw-bit figures assume ideal fair independent dice.</p>
+    </section>
+
+    <section>
+      <h2>Computer vision makes the manual ceremony practical</h2>
+      <p>Generating 128 bits from dice by hand has always been possible. The painful part is operational: roll roughly 50 dice, preserve a deterministic order, record every value without a transcription error, and then perform or verify the conversion into bits.</p>
+      <p>Bulk packs of 50 ordinary d6 dice can often be found for around $10 or less. DiceSecret lets all 50 be thrown together and uses the trained vision model to read, order, and accumulate the results. With a clean throw and a short 10 to 20 second camera sweep, a one-batch 128-bit ceremony can complete in under about 30 seconds. If the exact extractor lands in its rejection region, or the reader skips dice, the user simply supplies more physical rolls.</p>
+      <div class="backgroundCallout">
+        <b>The practical idea:</b> for roughly the cost of a cheap 50-die pack and less than a minute of attention, a user can create a high-entropy physical root-secret input that they personally witnessed, while the software handles the tedious reading, ordering, and exact conversion work.
+      </div>
+    </section>
+
+    <section>
+      <h2>An observable and reproducible ceremony</h2>
+      <div class="ceremonyFlow" aria-label="DiceSecret entropy ceremony">
+        <span>physical dice</span><i>-&gt;</i><span>ordered results</span><i>-&gt;</i><span>deterministic extraction</span><i>-&gt;</i><span>128/256-bit value</span><i>-&gt;</i><span>hex / words / recovery</span>
+      </div>
+      <p>The goal is not to prove after the fact that randomness was random. The useful verification property is that a separate implementation can take the same witnessed observations and verify the deterministic entropy-to-secret calculation.</p>
+    </section>
+
+    <section>
+      <h2>Why use an independent physical entropy source?</h2>
+      <p>Modern operating-system CSPRNGs are designed for cryptographic use and are appropriate for routine key generation. DiceSecret addresses a different goal: reducing reliance on any single machine-based entropy path when creating a rare, high-value root secret.</p>
+      <p>History shows that randomness failures can arise from implementation mistakes, initialization problems, weak entropy sources, and hardware behavior. Published research has also demonstrated attacks against hardware true-random-number generators, including frequency injection through a power supply and electromagnetic analysis of ring-oscillator-based designs. These results do not imply that machine RNGs are generally weak. They show that entropy generation is part of the trusted computing base and can have failure modes of its own.</p>
+      <p>A privately rolled dice ceremony places the source observations outside the hardware, firmware, operating system, and application stack that will process or later use the secret. That independence is the useful property: a weakness in one machine-based entropy path does not become the sole origin of the root secret.</p>
+    </section>
+
+    <section>
+      <h2>Why long-lived root secrets deserve extra care</h2>
+      <p>A root secret may be created once and expected to remain trustworthy for many years, sometimes for an unknown lifetime. Over long periods, implementations, platforms, and security assumptions change, and previously unknown weaknesses can be discovered.</p>
+      <p>Using an independently generated physical source reduces the number of assumptions that must remain valid about the machine that happened to generate the secret years earlier. The dice results can be witnessed, documented, and processed by a public deterministic extractor, so the origin of the secret is not dependent solely on one historical RNG implementation.</p>
+      <p>This does not future-proof the cryptographic system that later uses the secret. Algorithms can become obsolete, implementations can leak keys, and secrets can be mishandled. DiceSecret addresses the narrower problem of how the root secret was generated.</p>
+    </section>
+
+    <section class="offlineSection">
+      <h2>The strongest intended form is offline</h2>
+      <p>This hosted site is a demonstration of the DiceSecret workflow. The strongest intended deployment is an offline application in which camera frames, ordered dice observations, browser or application mixing, and the final secret are processed locally on a device that does not need to send the ceremony over a network.</p>
+      <div class="ceremonyFlow" aria-label="Offline DiceSecret architecture">
+        <span>private dice ceremony</span><i>-&gt;</i><span>local vision model</span><i>-&gt;</i><span>verified dice transcript</span><i>-&gt;</i><span>public deterministic extraction</span><i>-&gt;</i><span>local secret</span>
+      </div>
+      <p>The trained computer-vision model is the automation layer that makes the ceremony fast. The deterministic entropy extraction, encoding rules, test vectors, and independent verification logic can remain public and auditable even if a future offline application distributes the trained vision models under a separate commercial or licensed model.</p>
+      <p>Shipping that strongest version requires more than turning off a network connection. It requires local inference packaging, model-distribution and licensing decisions, signed builds, update and verification mechanisms, platform work, and sustained development. That may ultimately require commercial funding, licensing, partnerships, or other support.</p>
+      <div class="backgroundCallout offlineInterest">
+        <b>Interested in an offline version?</b>
+        <p>Interest from potential users, security teams, wallet or key-management projects, deployment partners, or organizations interested in funding development would help determine whether a fully offline product is practical.</p>
+        <p class="contactPending">Project contact: <a href="mailto:admin@dicesecret.com">admin@dicesecret.com</a></p>
+      </div>
+    </section>
+
+    <section class="limitsSection">
+      <h2>What DiceSecret does not solve</h2>
+      <ul>
+        <li><b>Physical dice bias:</b> mathematical extraction removes base-conversion bias, not physical source bias. The stated entropy figures assume sufficiently fair, independent dice.</li>
+        <li><b>Malicious software:</b> a compromised page can still steal or replace a secret. Physical entropy alone does not make malicious software trustworthy.</li>
+        <li><b>Poor secret handling:</b> screenshots, cloud QR scanners, printer spools, backups, malware, or insecure storage can expose a correctly generated secret later.</li>
+        <li><b>Routine randomness:</b> this is not a replacement for the operating-system CSPRNG used for ordinary ephemeral cryptographic randomness.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What this hosted demo adds</h2>
+      <p>The demo uses computer vision to read and order physical d6 results. When Private browser mix is enabled, the browser also generates private random bytes with Web Crypto and XORs them with the dice-derived result. The inference server therefore sees the dice-derived side, but not the final mixed secret.</p>
+      <p>The public-demo work is intended to minimize retention, separate the browser application from inference, and make the delivered build independently identifiable. Those measures strengthen the demonstration, but they do not turn a hosted web application into the final trust model. The strongest intended form remains fully offline local inference.</p>
+    </section>
+
+    <section>
+      <h2>Where this is most useful</h2>
+      <p>DiceSecret is deliberately manual. It is most defensible for rare, high-value root secrets where the ceremony and independent verification are worth the effort: long-lived wallet roots, offline master material, or other secrets whose compromise would be unusually costly.</p>
+    </section>
+
+
+    <section class="referenceSection">
+      <h2>References and background</h2>
+      <ul class="referenceList">
+        <li><a href="https://www.rfc-editor.org/rfc/rfc4086" target="_blank" rel="noopener">RFC 4086: Randomness Requirements for Security</a></li>
+        <li><a href="https://csrc.nist.gov/pubs/sp/800/90/b/final" target="_blank" rel="noopener">NIST SP 800-90B: Entropy Sources Used for Random Bit Generation</a></li>
+        <li><a href="https://csrc.nist.gov/pubs/sp/800/90/c/final" target="_blank" rel="noopener">NIST SP 800-90C: Random Bit Generator Constructions</a></li>
+        <li><a href="https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final" target="_blank" rel="noopener">NIST SP 800-57 Part 1 Rev. 5: Key Management</a></li>
+        <li><a href="https://lists.debian.org/debian-security-announce/2008/msg00152.html" target="_blank" rel="noopener">Debian DSA-1571-1: predictable OpenSSL random number generator</a></li>
+        <li><a href="https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/heninger" target="_blank" rel="noopener">Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices</a></li>
+        <li><a href="https://bitcoin.org/en/alert/2013-08-11-android" target="_blank" rel="noopener">Bitcoin.org Android security vulnerability alert, 2013</a></li>
+        <li><a href="https://www.nist.gov/news-events/news/2014/04/nist-removes-cryptography-algorithm-random-number-generator-recommendations" target="_blank" rel="noopener">NIST removal of Dual_EC_DRBG from recommendations</a></li>
+        <li><a href="https://www.kernel.org/pub/linux/docs/man-pages/book/man-pages-6.17.pdf" target="_blank" rel="noopener">Linux random(7): kernel CSPRNG and entropy-pool guidance</a></li>
+        <li><a href="https://www.nist.gov/publications/chip-security-using-electromagnetic-analysis" target="_blank" rel="noopener">NIST: On-Chip Security Using Electromagnetic Analysis</a></li>
+        <li><a href="https://www.cl.cam.ac.uk/~atm26/papers/markettos-ches2009-inject-trng.pdf" target="_blank" rel="noopener">Markettos and Moore: The Frequency Injection Attack on Ring-Oscillator-Based True Random Number Generators</a></li>
+        <li><a href="https://doi.org/10.1109/ISCAS.2013.6572251" target="_blank" rel="noopener">Bayon et al.: Electromagnetic Attacks on Ring Oscillator-Based True Random Number Generator</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9689501/" target="_blank" rel="noopener">Review: silicon TRNG side-channel and fault-injection attacks</a></li>
+      </ul>
+    </section>
+
+    <footer class="backgroundFooter">DiceSecret is an experimental demonstration. Do not treat the hosted demo as a production secret-generation environment until its deployment verification and ephemeral-storage work are complete.</footer>
+  </main>
+</body>
+</html>

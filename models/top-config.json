@@ -1,0 +1,24 @@
+{
+  "format": "dicevision-single-frame-reader-config-v1",
+  "top_baseline_config": "configs/top_obb_white_finetune_v2.json",
+  "pip_baseline_config": "configs/pip_reader_baseline_v1.json",
+  "top_checkpoint": "local/training/runs/top-obb-v3-mixed-aug20/weights/best.pt",
+  "pip_checkpoint": "local/training/runs/pip-reader-v1/weights/best.pt",
+  "prediction": {
+    "top_confidence_floor": 0.05,
+    "pip_confidence_floor": 0.05,
+    "default_commit_threshold": 0.5
+  },
+  "evaluation": {
+    "commit_thresholds": [
+      0.25,
+      0.5,
+      0.7,
+      0.85,
+      0.95
+    ],
+    "association_max_center_error_scale": 0.75,
+    "project": "local/training/evaluation",
+    "name": "single-frame-reader-v2-white-validation"
+  }
+}

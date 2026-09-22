@@ -1,0 +1,99 @@
+{
+  "format": "dicevision-video-reader-config-v1",
+  "single_frame_reader_config": "configs/single_frame_reader_v1.json",
+  "evaluation": {
+    "frame_horizons": [
+      1,
+      2,
+      3,
+      5,
+      10
+    ],
+    "include_all_frames": true,
+    "aggregation": "best-frame-confidence",
+    "project": "local/training/evaluation",
+    "name": "video-reader-v1-validation"
+  },
+  "tracking": {
+    "association_max_center_error_scale": 0.75,
+    "minimum_top_confidence": 0.25,
+    "minimum_confirmed_hits": 3,
+    "tentative_max_missed_frames": 1,
+    "max_missed_frames": 20,
+    "motion": {
+      "max_corners": 300,
+      "quality_level": 0.01,
+      "minimum_corner_distance_px": 12.0,
+      "corner_block_size": 7,
+      "lk_window_px": 31,
+      "lk_max_level": 3,
+      "lk_iterations": 20,
+      "lk_epsilon": 0.03,
+      "minimum_inliers": 12,
+      "ransac_reprojection_threshold_px": 4.0
+    },
+    "reacquisition_max_center_error_scale": 1.25,
+    "reacquisition_min_iou": 0.1,
+    "segment_stitching": {
+      "max_gap_frames": 30,
+      "minimum_anchor_tracks": 4,
+      "maximum_normalized_center_error": 0.75,
+      "minimum_iou": 0.1,
+      "maximum_scale_ratio": 1.5,
+      "minimum_score_margin": 0.1,
+      "anchor_ransac_reprojection_threshold_px": 4.0,
+      "orb": {
+        "max_features": 2500,
+        "ratio_test": 0.75,
+        "minimum_matches": 20,
+        "minimum_inliers": 12,
+        "ransac_reprojection_threshold_px": 4.0
+      }
+    },
+    "persistent_constellation": {
+      "enabled": true,
+      "maximum_center_error_scale": 0.85,
+      "minimum_matches": 4,
+      "minimum_match_fraction": 0.6,
+      "ransac_reprojection_threshold_px": 5.0,
+      "recovery_maximum_triangles": 12,
+      "recovery_coarse_maximum_center_error_scale": 1.35,
+      "recovery_ambiguity_error_margin": 0.08,
+      "new_die_confirmation_frames": 4,
+      "new_die_reference_distance_scale": 0.8,
+      "new_die_existing_slot_exclusion_scale": 0.9,
+      "identity_evidence": "geometry-only",
+      "initialization_stable_frames": 3,
+      "rescue_existing_slot_maximum_center_error_scale": 0.5,
+      "rescue_new_die_confirmation_frames": 6
+    }
+  },
+  "ui": {
+    "window_width": 1400,
+    "window_height": 900,
+    "sidebar_width": 340,
+    "header_height": 72,
+    "show_confidence": false,
+    "report_dir": "local/training/inference/video-reader-v1"
+  },
+  "live_test_recording": {
+    "root": "local/live-tests",
+    "writer_fourcc": "MJPG",
+    "writer_extension": ".avi",
+    "manifest_interval_frames": 30
+  },
+  "saved_tracking_review": {
+    "window_width": 1280,
+    "window_height": 900,
+    "writer_fourcc": "MJPG",
+    "writer_extension": ".avi",
+    "new_track_highlight_observations": 8,
+    "show_observation_value": true,
+    "jump_seconds": 1.0,
+    "large_jump_seconds": 5.0,
+    "minimum_playback_speed": 0.25,
+    "maximum_playback_speed": 4.0,
+    "identity_summary_ransac_reprojection_threshold_px": 5.0,
+    "identity_summary_duplicate_slot_maximum_center_error_scale": 0.35
+  }
+}

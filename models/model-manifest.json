@@ -1,0 +1,44 @@
+{
+  "format": "dicesecret-browser-model-bundle-v1",
+  "models": {
+    "status-policy.json": {
+      "bytes": 28869,
+      "kind": "policy",
+      "sha256": "55f32ad648e52fd04d211a3d61907a667400f9639945dc8cdbd6c395b963f1f5"
+    },
+    "temporal-config.json": {
+      "bytes": 2897,
+      "kind": "config",
+      "sha256": "268927ce048cea6edc603e0933d72058a02a89e2d7b968ef07fd836899a652ab"
+    },
+    "temporal-frame-encoder.onnx": {
+      "bytes": 4310905,
+      "kind": "onnx",
+      "sha256": "df0c43a62a5b0d44783cb022813746e8dcd6a804be6b3fc410c98108322ebe9c"
+    },
+    "temporal-reducer.onnx": {
+      "bytes": 932331,
+      "kind": "onnx",
+      "sha256": "12c92c9c2e816499274a6cd98f8fca493ae9b7f0a114bebd6741a986e64ad679"
+    },
+    "top-config.json": {
+      "bytes": 732,
+      "kind": "config",
+      "sha256": "c02e2c00c95169228711f394b10acabf38d6024a69340dcdda31ed97d17f1c42"
+    },
+    "top-obb.onnx": {
+      "bytes": 10195453,
+      "kind": "onnx",
+      "sha256": "31e67d4eb8454bc91d25b48abc2cc1cb5ed32f4ee9da9f4e58ccd1f5ed5a189d"
+    },
+    "tracking-config.json": {
+      "bytes": 3033,
+      "kind": "config",
+      "sha256": "9069f5699caf33db60b98f432d24f6f4ce93e7d472b290993a1dccae3e367773"
+    }
+  },
+  "source_checkpoints": {
+    "temporal": "a3adf9d75184156a5ae2a36266957bb908d9a3d8aa22333efb8fac6e525a64cc",
+    "top": "90118d63b5e632f44f86022fe7866b451942f66179fdc4eab0779d09b5c409d3"
+  }
+}
